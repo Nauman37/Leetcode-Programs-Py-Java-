@@ -6,15 +6,20 @@ The first day of the period is exempted from this rule.
 Return the number of smooth descent periods.
 */
 
-MOD=10**9+7
-class Solution:
-    def countPermutations(self, complexity: List[int]) -> int:
-        n=len(complexity)
+class Solution {
+    public long getDescentPeriods(int[] prices) {
+        long count = 1;
+        long current = 1;
 
-        for i in range(1,n):
-            if complexity[i] <= complexity[0]:
-                return 0
-        ans=1
-        for x in range(1,n):
-            ans=(ans*x)%MOD
-        return ans
+        for(int i = 1; i< prices.length; i++){
+            if(prices[i]==prices[i-1]-1){
+                current++;
+            }
+            else {
+                current = 1;
+            }
+            count += current;
+        }
+        return count;
+    }
+}
